@@ -79,6 +79,10 @@ export default function ConfigPanel({
     setEditText('');
   }
 
+  function removeAllClauses() {
+    setClauses([]);
+  }
+
   return (
     <div className="flex flex-col gap-6">
       {/* Document Type Selector */}
@@ -257,6 +261,15 @@ export default function ConfigPanel({
                 ? 'Show less'
                 : `+${clauses.filter(c => c.enabled).length - 6} more enabled — click to expand`
               }
+            </button>
+          )}
+          {clauses.filter(c => c.enabled).length > 0 && (
+            <button
+              onClick={removeAllClauses}
+              className="flex items-center justify-center gap-1.5 mt-3 w-full py-2 border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 rounded-lg text-xs font-semibold transition-all"
+            >
+              <Trash2 size={13} />
+              Remove All Clauses
             </button>
           )}
         </div>

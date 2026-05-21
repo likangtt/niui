@@ -15,6 +15,8 @@ export interface Clause {
 export interface Signatures {
   signatureA: string;
   signatureB: string;
+  signatureAData: string; // base64 e-signature image
+  signatureBData: string; // base64 e-signature image
   dateA: string;
   dateB: string;
 }

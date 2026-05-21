@@ -1,6 +1,7 @@
 import type { BasicInfo, Clause, Signatures, DocumentType } from '../types';
 import { Pencil } from 'lucide-react';
 import { useState } from 'react';
+import ESignaturePad from './ESignaturePad';
 
 interface DocumentPreviewProps {
   docType: DocumentType;
@@ -188,7 +189,26 @@ export default function DocumentPreview({
         </div>
       </section>
 
-      {/* Signature Block */}
+      {/* E-Signature Block — interactive pads (no-print) */}
+      <section className="no-print mb-6">
+        <h2 className="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-3">
+          E-Signatures
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ESignaturePad
+            value={signatures.signatureAData}
+            onChange={(dataUrl) => setSignatures({ ...signatures, signatureAData: dataUrl })}
+            label={`${nameA} — Party A`}
+          />
+          <ESignaturePad
+            value={signatures.signatureBData}
+            onChange={(dataUrl) => setSignatures({ ...signatures, signatureBData: dataUrl })}
+            label={`${nameB} — Party B`}
+          />
+        </div>
+      </section>
+
+      {/* Signature Block — printed document */}
       <section>
         <h2 className="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-4">
           Signatures
@@ -196,15 +216,12 @@ export default function DocumentPreview({
         <div className="grid grid-cols-2 gap-6">
           {/* Signature A */}
           <div>
-            <div className="border-b-2 border-slate-200 mb-1 pb-1 min-h-[48px] flex items-end">
-              <input
-                type="text"
-                placeholder={`Sign as ${nameA}`}
-                value={signatures.signatureA}
-                onChange={e => setSignatures({ ...signatures, signatureA: e.target.value })}
-                className="signature-font w-full bg-transparent border-none outline-none text-slate-800 placeholder-slate-300 text-xl leading-none"
-                style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '1.4rem' }}
-              />
+            <div className="border-b-2 border-slate-200 mb-1 pb-1 min-h-[56px] flex items-end justify-center">
+              {signatures.signatureAData ? (
+                <img src={signatures.signatureAData} alt={`${nameA} signature`} className="max-h-[50px] max-w-full object-contain" />
+              ) : (
+                <span className="text-slate-300 text-sm italic">Not signed</span>
+              )}
             </div>
             <p className="text-[10px] text-slate-400 font-medium mb-2">{nameA} — Party A Signature</p>
             <div className="border-b border-slate-200 mb-1 pb-1">
@@ -220,15 +237,12 @@ export default function DocumentPreview({
 
           {/* Signature B */}
           <div>
-            <div className="border-b-2 border-slate-200 mb-1 pb-1 min-h-[48px] flex items-end">
-              <input
-                type="text"
-                placeholder={`Sign as ${nameB}`}
-                value={signatures.signatureB}
-                onChange={e => setSignatures({ ...signatures, signatureB: e.target.value })}
-                className="w-full bg-transparent border-none outline-none text-slate-800 placeholder-slate-300"
-                style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '1.4rem' }}
-              />
+            <div className="border-b-2 border-slate-200 mb-1 pb-1 min-h-[56px] flex items-end justify-center">
+              {signatures.signatureBData ? (
+                <img src={signatures.signatureBData} alt={`${nameB} signature`} className="max-h-[50px] max-w-full object-contain" />
+              ) : (
+                <span className="text-slate-300 text-sm italic">Not signed</span>
+              )}
             </div>
             <p className="text-[10px] text-slate-400 font-medium mb-2">{nameB} — Party B Signature</p>
             <div className="border-b border-slate-200 mb-1 pb-1">

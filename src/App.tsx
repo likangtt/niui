@@ -131,6 +131,8 @@ const DEFAULT_BASIC_INFO: BasicInfo = {
 const DEFAULT_SIGNATURES: Signatures = {
   signatureA: '',
   signatureB: '',
+  signatureAData: '',
+  signatureBData: '',
   dateA: '',
   dateB: '',
 };

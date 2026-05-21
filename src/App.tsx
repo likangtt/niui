@@ -142,6 +142,67 @@ const DEFAULT_CLAUSES: Clause[] = [
     enabled: true,
     preset: true,
   },
+  // ── General Shared Living ──
+  {
+    id: 'preset-10a',
+    text: 'All shared living spaces including the living room, kitchen, and hallways shall be kept free of personal belongings. Items left in common areas for more than 24 hours may be moved to the owner\'s private room.',
+    enabled: true,
+    preset: true,
+  },
+  {
+    id: 'preset-10b',
+    text: 'Each resident is responsible for cleaning their own dishes, cookware, and utensils within 2 hours of use. No dirty dishes shall be left in the sink overnight.',
+    enabled: true,
+    preset: true,
+  },
+  {
+    id: 'preset-10c',
+    text: 'All shared utility bills including electricity, water, gas, and internet shall be divided equally between residents and paid by the 5th of each month. Late payments incur a $15 administrative fee.',
+    enabled: true,
+    preset: true,
+  },
+  {
+    id: 'preset-10d',
+    text: 'No smoking, vaping, or use of any tobacco products is permitted inside the residence. Smoking is permitted only in designated outdoor areas at least 25 feet from any entrance.',
+    enabled: true,
+    preset: true,
+  },
+  {
+    id: 'preset-10e',
+    text: 'Pets are not permitted in the residence without prior written consent from all residents and the landlord. Any approved pet owner assumes full responsibility for damages, noise complaints, and cleaning.',
+    enabled: true,
+    preset: true,
+  },
+  {
+    id: 'preset-10f',
+    text: 'Each resident shall maintain renters insurance with a minimum of $100,000 in personal liability coverage and provide proof of coverage to the other residents within 30 days of move-in.',
+    enabled: true,
+    preset: true,
+  },
+  {
+    id: 'preset-10g',
+    text: 'Parties or gatherings of more than 6 guests require 48-hour advance notice to all residents. Any gathering must end by 11:00 PM and guests must not disrupt neighbors or common areas.',
+    enabled: true,
+    preset: true,
+  },
+  {
+    id: 'preset-10h',
+    text: 'Each resident shall contribute $50 per month to a shared household supplies fund used for toilet paper, cleaning products, trash bags, and other communal items. Unused funds roll over monthly.',
+    enabled: true,
+    preset: true,
+  },
+  {
+    id: 'preset-10i',
+    text: 'Temperature settings for heating and air conditioning shall be mutually agreed upon. The thermostat shall be set no lower than 68°F in summer and no higher than 72°F in winter unless otherwise agreed.',
+    enabled: true,
+    preset: true,
+  },
+  {
+    id: 'preset-10j',
+    text: 'Any resident planning to move out must provide at least 30 days written notice to all other residents and the landlord. The departing resident remains responsible for their share of rent and utilities through the notice period.',
+    enabled: true,
+    preset: true,
+  },
 ];
 
 const DEFAULT_BASIC_INFO: BasicInfo = {
@@ -314,6 +375,7 @@ export default function App() {
               clauses={clauses}
               signatures={signatures}
               setSignatures={setSignatures}
+              setClauses={setClauses}
             />
 
             {/* Share directly below the contract */}

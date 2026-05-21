@@ -1,4 +1,6 @@
 import type { BasicInfo, Clause, Signatures, DocumentType } from '../types';
+import { Pencil } from 'lucide-react';
+import { useState } from 'react';
 
 interface DocumentPreviewProps {
   docType: DocumentType;
@@ -6,6 +8,7 @@ interface DocumentPreviewProps {
   clauses: Clause[];
   signatures: Signatures;
   setSignatures: (s: Signatures) => void;
+  setClauses: (c: Clause[]) => void;
 }
 
 const DOC_TITLES: Record<DocumentType, string> = {
@@ -45,13 +48,29 @@ export default function DocumentPreview({
   clauses,
   signatures,
   setSignatures,
+  setClauses,
 }: DocumentPreviewProps) {
+  const [previewEditId, setPreviewEditId] = useState<string | null>(null);
+  const [previewEditText, setPreviewEditText] = useState('');
   const nameA = basicInfo.roommateA || 'Party A';
   const nameB = basicInfo.roommateB || 'Party B';
   const address = basicInfo.address || '[Property Address Not Provided]';
   const leaseDate = formatDate(basicInfo.leaseStart);
   const enabledClauses = clauses.filter(c => c.enabled);
   const today = formatDate(new Date().toISOString().split('T')[0]);
+
+  function startPreviewEdit(clause: Clause) {
+    setPreviewEditId(clause.id);
+    setPreviewEditText(clause.text);
+  }
+
+  function savePreviewEdit() {
+    if (previewEditId && previewEditText.trim()) {
+      setClauses(clauses.map(c => c.id === previewEditId ? { ...c, text: previewEditText.trim() } : c));
+    }
+    setPreviewEditId(null);
+    setPreviewEditText('');
+  }
 
   return (
     <div
@@ -114,14 +133,48 @@ export default function DocumentPreview({
           <p className="text-xs text-slate-400 italic">No clauses selected. Enable clauses from the dashboard on the left.</p>
         ) : (
           <ol className="flex flex-col gap-2.5">
-            {enabledClauses.map((clause, i) => (
-              <li key={clause.id} className="flex items-start gap-3">
+            {enabledClauses.slice(0, 10).map((clause, i) => (
+              <li key={clause.id} className="group flex items-start gap-3">
                 <span className="flex-shrink-0 w-5 h-5 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500 mt-0.5">
                   {i + 1}
                 </span>
-                <p className="text-xs text-slate-700 leading-relaxed">{clause.text}</p>
+                {clause.id === previewEditId ? (
+                  <div className="flex-1 flex flex-col gap-1.5">
+                    <input
+                      type="text"
+                      value={previewEditText}
+                      onChange={e => setPreviewEditText(e.target.value)}
+                      onKeyDown={e => {
+                        if (e.key === 'Enter') savePreviewEdit();
+                        if (e.key === 'Escape') { setPreviewEditId(null); setPreviewEditText(''); }
+                      }}
+                      className="w-full bg-white border border-sky-300 rounded px-2 py-1 text-xs text-slate-700 focus:outline-none focus:border-sky-400"
+                      autoFocus
+                    />
+                    <div className="flex gap-1.5">
+                      <button onClick={savePreviewEdit} className="text-[10px] px-2 py-0.5 bg-sky-500 text-white rounded hover:bg-sky-600">Save</button>
+                      <button onClick={() => { setPreviewEditId(null); setPreviewEditText(''); }} className="text-[10px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded hover:bg-slate-300">Cancel</button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <p className="flex-1 text-xs text-slate-700 leading-relaxed">{clause.text}</p>
+                    <button
+                      onClick={() => startPreviewEdit(clause)}
+                      className="no-print flex-shrink-0 opacity-0 group-hover:opacity-100 text-sky-500 hover:text-sky-600 transition-opacity p-0.5 rounded hover:bg-sky-50"
+                      aria-label="Edit clause"
+                    >
+                      <Pencil size={15} />
+                    </button>
+                  </>
+                )}
               </li>
             ))}
+            {enabledClauses.length > 10 && (
+              <li className="text-xs text-slate-400 italic mt-2 pt-2 border-t border-slate-100">
+                ... and {enabledClauses.length - 10} more clauses (view all in the left panel)
+              </li>
+            )}
           </ol>
         )}
       </section>

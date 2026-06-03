@@ -283,8 +283,17 @@ export default function App() {
           {/* Right: Document Preview */}
           <div className="flex-1 min-w-0">
             <div className="no-print flex items-center gap-2 mb-4">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-              <span className="text-xs text-slate-400 font-medium">Live Document Preview</span>
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-400/50"></div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-500/15 border border-emerald-500/30 rounded-full text-xs font-bold text-emerald-400 tracking-wide uppercase shadow-sm shadow-emerald-500/10">
+                <svg className="w-3 h-3" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M8 1L8 8" />
+                  <path d="M8 8L13 5" />
+                  <path d="M8 8L3 5" />
+                  <path d="M3 9L8 12L13 9" />
+                  <path d="M3 12L8 15L13 12" />
+                </svg>
+                Live Document Preview
+              </span>
               <button
                 onClick={handlePrint}
                 className="ml-auto flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700/60 hover:border-slate-500 text-slate-300 hover:text-white rounded-lg text-xs font-semibold transition-all duration-150 shadow"

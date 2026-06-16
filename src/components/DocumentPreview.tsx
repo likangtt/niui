@@ -2,6 +2,7 @@ import type { BasicInfo, Clause, Signatures, DocumentType } from '../types';
 import { Pencil } from 'lucide-react';
 import { useState } from 'react';
 import ESignaturePad from './ESignaturePad';
+import { usePageVariant } from '../pageVariant';
 
 interface DocumentPreviewProps {
   docType: DocumentType;
@@ -55,10 +56,13 @@ export default function DocumentPreview({
   const [previewEditText, setPreviewEditText] = useState('');
   const nameA = basicInfo.roommateA || 'Party A';
   const nameB = basicInfo.roommateB || 'Party B';
-  const address = basicInfo.address || '[Property Address Not Provided]';
+  const address = basicInfo.address || '________________________';
   const leaseDate = formatDate(basicInfo.leaseStart);
   const enabledClauses = clauses.filter(c => c.enabled);
   const today = formatDate(new Date().toISOString().split('T')[0]);
+  const pageVariant = usePageVariant();
+  const residentLabel = pageVariant === 'family' ? 'Family Member' : 'Resident';
+  const residentsLabel = pageVariant === 'family' ? 'Family Members' : 'Residents';
 
   function startPreviewEdit(clause: Clause) {
     setPreviewEditId(clause.id);
@@ -98,11 +102,11 @@ export default function DocumentPreview({
         </h2>
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
-            <p className="text-xs text-slate-400 font-medium mb-0.5">Party A — First Resident</p>
+            <p className="text-xs text-slate-400 font-medium mb-0.5">Party A — First {residentLabel}</p>
             <p className="text-sm font-semibold text-slate-800">{nameA}</p>
           </div>
           <div className="bg-slate-50 rounded-lg p-3 border border-slate-200">
-            <p className="text-xs text-slate-400 font-medium mb-0.5">Party B — Second Resident</p>
+            <p className="text-xs text-slate-400 font-medium mb-0.5">Party B — Second {residentLabel}</p>
             <p className="text-sm font-semibold text-slate-800">{nameB}</p>
           </div>
         </div>
@@ -184,7 +188,7 @@ export default function DocumentPreview({
       <section className="mb-6">
         <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
           <p className="text-xs text-slate-600 leading-relaxed">
-            By signing below, both Residents acknowledge that they have read, understood, and agreed to abide by all terms set forth in this {DOC_TITLES[docType]}. This document was generated on <span className="font-semibold">{today}</span> and is intended to serve as a record of mutual understanding between co-residents.
+            By signing below, both {residentsLabel} acknowledge that they have read, understood, and agreed to abide by all terms set forth in this {DOC_TITLES[docType]}. This document was generated on <span className="font-semibold">{today}</span> and is intended to serve as a record of mutual understanding between co-{residentLabel.toLowerCase()}s.
           </p>
         </div>
       </section>

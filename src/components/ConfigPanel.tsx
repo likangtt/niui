@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FileText, ClipboardList, Refrigerator as RefrigeratorIcon, PawPrint, Fence, Handshake, Key, Receipt, Car, Plus, CheckSquare, Square, Trash2, Pencil } from 'lucide-react';
 import type { BasicInfo, Clause, DocumentType } from '../types';
+import { usePageVariant } from '../pageVariant';
 
 interface ConfigPanelProps {
   docType: DocumentType;
@@ -31,6 +32,9 @@ export default function ConfigPanel({
   clauses,
   setClauses,
 }: ConfigPanelProps) {
+  const pageVariant = usePageVariant();
+  const partyALabel = pageVariant === 'family' ? 'Family Member A' : 'Roommate A';
+  const partyBLabel = pageVariant === 'family' ? 'Family Member B' : 'Roommate B';
   const [customInput, setCustomInput] = useState('');
   const [clausesExpanded, setClausesExpanded] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -126,7 +130,7 @@ export default function ConfigPanel({
               />
             </div>
             <div>
-              <label className="block text-xs text-slate-400 mb-1.5 font-medium">Roommate B</label>
+              <label className="block text-xs text-slate-400 mb-1.5 font-medium">{partyBLabel}</label>
               <input
                 type="text"
                 placeholder="Full name"

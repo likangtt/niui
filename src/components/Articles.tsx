@@ -1,4 +1,6 @@
-import { BookOpen, Scale, Users, Home, Baby, Heart, PawPrint, MessageCircle, GraduationCap, Fence, Handshake, Key, Receipt, Car } from 'lucide-react';
+import { useState } from 'react';
+import { BookOpen, ChevronDown, Scale, Users, Home, Baby, Heart, PawPrint, MessageCircle, GraduationCap, Fence, Handshake, Key, Receipt, Car } from 'lucide-react';
+import { usePageVariant } from '../pageVariant';
 
 interface Article {
   icon: React.ReactNode;
@@ -86,43 +88,25 @@ const ARTICLES: Article[] = [
     title: 'Neighbor Boundary Agreements: What Happens When a Tree, a Fence, or a Parking Spot Turns Neighbors Into Enemies',
     paragraphs: [
       'In 2024, a suburban couple in Austin, Texas spent $18,000 in legal fees fighting their next-door neighbor over a 60-year-old oak tree whose branches crossed the property line and dropped leaves into the neighbor\'s pool. The dispute dragged on for 14 months, involved three mediation sessions, and permanently destroyed what had been a cordial 12-year neighbor relationship. The irony? A one-page neighbor boundary agreement signed when the pool was installed could have prevented the entire conflict. Neighbor disputes are uniquely toxic because unlike roommate conflicts — which have a natural end date when the lease expires — you cannot easily walk away from the person who lives 15 feet from your bedroom window. The financial and emotional cost of unresolved neighbor tension far exceeds the 20 minutes it takes to draft and sign a mutual understanding document.',
-      'A comprehensive neighbor boundary agreement addresses at minimum four friction points that generate 80% of neighbor-to-neighbor legal complaints. First, noise and quiet hours — specifying decibel limits for music, power tools, and outdoor gatherings, with differentiated hours for weekdays, weekends, and holidays. Second, property line maintenance — clarifying who trims the overhanging branches, who pays for the shared fence repair after a storm, and who is responsible for leaves that fall from one property onto the other. Third, parking and driveway access — designating where each household parks, how long guests may occupy street parking in front of the neighbor\'s house, and whether the shared driveway can be blocked for short-term loading. Fourth, waste and appearance standards — agreeing on garbage bin placement, lawn maintenance frequency, and holiday decoration timelines. The case of the Austin couple demonstrates the fundamental truth of neighbor relations: the cost of documenting expectations is measured in minutes and paper; the cost of undocumented expectations is measured in legal fees, court dates, and permanently broken relationships. For anyone living within 50 feet of another human being, a signed neighbor property boundary agreement is not paranoia — it is the cheapest form of conflict insurance available.',
+      'A practical neighbor boundary agreement should cover property line demarcation, tree and vegetation maintenance, fence responsibility and cost-sharing, parking and driveway usage, noise and hours-of-operation expectations, and a simple dispute resolution process (written notice → face-to-face conversation → neutral third-party mediator). When both homeowners sign a free printable neighbor agreement, everyone wins: property values are protected, anxiety is reduced, and what could have been a $18,000 legal battle remains an amicable 20-minute conversation. Here is exactly what goes into a legally structured neighbor agreement that actually works in real suburban and urban American settings.',
     ],
   },
   {
     icon: <Handshake size={20} />,
-    tag: 'Borrowing & Lending',
-    title: 'The $4,200 Lawnmower: Why Every Item You Lend to a Neighbor or Friend Needs a Written Agreement',
+    tag: 'Personal Lending',
+    title: 'Personal Lending Contract Between Friends: How to Lend Money Without Destroying a Relationship',
     paragraphs: [
-      'In the summer of 2023, Mark Chen of Portland, Oregon lent his brand-new professional-grade lawnmower — purchased for $4,200 — to his neighbor of seven years for what was described as "a couple of hours, just need to catch up on the backyard." The neighbor returned it three days later with a bent blade, a cracked wheel housing from running over a hidden rock, and grass clippings clogging the engine intake. When Mark asked for repair costs, the neighbor responded with visible offense: "It was already like that" and "I thought we were friends." The friendship did not survive the dispute. Mark\'s lawnmower sat unrepaired for four months while he debated small claims court. This scenario — a lender believing the terms were obvious, a borrower believing friendship overrides liability — plays out thousands of times daily across American neighborhoods, and almost every case could have been prevented by a one-page lending agreement signed before the handoff.',
-      'A properly structured item lending agreement protects both parties in ways that verbal arrangements fundamentally cannot. For the lender, it documents the item\'s pre-loan condition — ideally with timestamped photos — establishes a clear return date, specifies authorized uses and prohibited uses, and assigns financial responsibility for damage, loss, or theft during the loan period. For the borrower, it provides clarity about exactly what is expected, eliminates the ambiguity that makes the "when do you need it back?" question awkward, and protects against scope creep where a lender retroactively claims additional items were included or additional damage occurred. The agreement should specify the item description with serial numbers where applicable, approximate replacement value, loan start and end dates, condition at handover, authorized users (is the borrower\'s teenage son allowed to use it?), and a clear process for handling damage — typically full repair or replacement cost reimbursement within 30 days. The most powerful sentence in any lending agreement is not about money; it is about preserving relationships. When both parties sign a personal property loan contract, the document becomes the enforcer, not the friend. And unlike a friendship damaged by an unresolved dispute, a signed piece of paper can be replaced in 60 seconds at no emotional cost.',
+      'Lending money to a friend feels simple at the moment — but it becomes complicated the moment repayment is late. A personal lending contract between friends preserves the relationship precisely because it eliminates ambiguity. By documenting the loan amount, repayment schedule, interest terms (if any), and consequences of late payment, both parties operate from the same set of clear expectations rather than relying on memory and goodwill. A formal lending agreement between individuals does not need to be hostile or bureaucratic — it can be a simple one-page document signed by both parties that functions as a shared reference point.',
+      'The key elements of a personal lending contract between friends include: the principal amount loaned, the date of disbursement, the repayment schedule (lump sum or installment), any interest rate (some states require minimum interest to avoid gift tax implications), late payment penalties, early repayment terms (whether prepayment is allowed without penalty), and what happens in the event of default. When both parties sign before the money changes hands, the lender is protected and the borrower knows exactly what is expected. This clarity reduces anxiety for both sides and protects the friendship from the primary cause of money-related relationship damage: unspoken assumptions about repayment timing and terms.',
     ],
   },
   {
     icon: <Key size={20} />,
-    tag: 'House Sitting & Security',
-    title: 'House Sitting Agreement Horror Stories: The Family That Came Home to a Destroyed Living Room and No Legal Recourse',
+    tag: 'House Sitting',
+    title: 'House Sitting Agreement Template: Protect Your Home and Your Sitter With a Simple Contract',
     paragraphs: [
-      'In December 2024, the Morrison family of Denver returned from a two-week holiday trip to Hawaii to find their living room in shambles — wine stains on the white sofa, a broken television screen, cigarette burns on the hardwood floor, and an unlocked back door that had been left open for an unknown number of days. Their house sitter, a trusted coworker\'s 22-year-old daughter who had been paid $300 upfront, had hosted a New Year\'s Eve party attended by approximately 40 guests. The damage totaled over $6,000. When the Morrisons attempted to seek compensation, they discovered the devastating legal reality: without a written house sitting agreement that specified guest policies, property access limits, and liability for damage, they had no enforceable claim beyond small claims court — and even that required proving that the specific sitter, rather than one of 40 party guests, caused each individual item of damage. The Morrisons ultimately ate the entire cost and spent six months rebuilding trust in their own judgment.',
-      'A house sitting and key agreement is not an insult to the person you trust with your home — it is protection for both parties against the assumption gaps that cause catastrophic outcomes. The agreement should clearly define: authorized access hours and whether the sitter stays overnight or performs drop-in visits; key security protocols including a prohibition on key duplication and a requirement to report lost keys within two hours; specific daily tasks such as plant watering schedules, pet feeding times and quantities, mail and package collection, and garbage bin management; guest and visitor prohibitions — explicitly stating that parties, gatherings, and overnight guests not listed in the agreement are not permitted; emergency procedures including the homeowner\'s contact information, preferred emergency contractors for plumbing or electrical failures, and the veterinarian\'s contact information if pets are involved; and liability terms specifying that the sitter is financially responsible for damage caused by negligence, unauthorized guests, or failure to secure the property. The Morrison family\'s $6,000 lesson is expensive but instructive: the person you trust most is the person with whom you should be most comfortable signing a written agreement, because clarity is an act of respect, not suspicion. A signed temporary property oversight contract protects the sitter from false accusations just as thoroughly as it protects the homeowner from unauthorized parties.',
-    ],
-  },
-  {
-    icon: <Receipt size={20} />,
-    tag: 'Shared Property Costs',
-    title: 'Who Pays for the Fence? The $12,000 Shared Expense Dispute That Two Neighbors Could Have Settled With a One-Page Contract',
-    paragraphs: [
-      'In March 2025, two adjacent homeowners in Charlotte, North Carolina faced a shared crisis: a severe thunderstorm had toppled 40 feet of the wooden privacy fence that separated their properties. Both families had dogs that required a secure yard. Both families agreed the fence needed immediate replacement. What they could not agree on was who should pay. Neighbor A argued that because the fence posts were anchored on Neighbor A\'s property, Neighbor B had no financial obligation. Neighbor B argued that because the fence served both properties equally — containing both dogs, providing privacy for both backyards — the cost should be split equally. The disagreement escalated over six weeks of text messages, two unsuccessful mediation attempts, and finally a demand letter from Neighbor A\'s attorney. The new fence cost $12,000 to replace. The combined legal fees for both parties exceeded $9,000. The dogs remained confined to half-yards on leashes for four months while the dispute played out. Total avoidable cost: over $21,000, plus two neighbor relationships permanently and publicly destroyed.',
-      'A joint property maintenance cost-sharing agreement resolves this entire category of dispute before the first nail is driven. The agreement template should establish: the precise scope of the shared project with contractor quotes attached as an appendix; the cost distribution formula — whether 50/50, proportional to property benefit, or allocated differently for materials versus labor; a payment timeline with specific dates, typically with each party contributing their share into a designated project account no fewer than seven days before the contractor\'s scheduled start date; the contractor selection process requiring mutual written approval from both parties before any work is authorized; a mechanism for handling cost overruns — typically a cap of 10% above the quoted price beyond which both parties must re-approve in writing; and a default provision specifying that if one party fails to pay their agreed share, the other party may proceed with the project and seek reimbursement through documented channels. The Charlotte fence disaster is a textbook example of what behavioral economists call the "optimism bias" — the irrational belief shared by both neighbors that the other party would eventually see reason and agree to their preferred arrangement. A signed shared property expense agreement does not determine who is right; it establishes who agreed to what before the storm hit, which is the only question a court or mediator actually cares about.',
-    ],
-  },
-  {
-    icon: <Car size={20} />,
-    tag: 'Transportation & Commuting',
-    title: 'Car Pool Contracts: How Three Coworkers Saved $4,800 Each Annually — and Avoided the Scheduling Chaos That Kills Most Ride Shares',
-    paragraphs: [
-      'In January 2024, three software engineers at a Raleigh-based tech company — all living within a four-mile radius of each other and commuting 22 miles each way to the office — decided to start a car pool arrangement to save money during a period of high gas prices. The first month was euphoric: shared playlists, saved parking spots, and a collective $600 reduction in monthly transportation costs. By month three, the arrangement had collapsed. One driver was consistently 15 minutes late to the pickup point. Another refused to contribute to oil changes and tire rotations, arguing that those were "ownership costs, not driving costs." A third unilaterally changed the Friday route to accommodate a new gym membership without informing the group. The arrangement dissolved into a tense Slack channel and three separate solo commutes — burning more gas, generating more emissions, and creating more workplace friction than if they had never tried at all. Six months later, a new hire who had previously worked at a company with formal vanpool agreements suggested they try again — this time with a written car pool contract.',
-      'The second attempt, governed by a signed ride-sharing agreement, has now operated smoothly for over 18 months and saved each participant approximately $4,800 per year in fuel, tolls, maintenance, and parking costs. The contract that made the difference addressed six critical elements that verbal arrangements inevitably neglect. First, the rotation schedule — a fixed weekly driver rotation with designated primary and backup drivers, published 30 days in advance via shared calendar. Second, pickup logistics — specified pickup points, a five-minute grace window, and a rule that any delay exceeding ten minutes without notification means the group departs without the late party, who is responsible for their own transportation that day. Third, cost sharing — a documented monthly settlement process covering fuel (calculated per mile driven), tolls (actual cost divided equally), and routine maintenance costs prorated by miles driven. Fourth, vehicle standards — a minimum cleanliness requirement for each driver\'s car on their driving day, including no excessive trash, no strong odors, and functional seatbelts for all passengers. Fifth, communication protocols — a group notification standard requiring 60 minutes\' advance notice for any schedule change and 24 hours\' notice for planned absences. Sixth, insurance and liability — explicit acknowledgment that each participant relies on their own personal auto insurance as primary coverage, and that the arrangement is a voluntary cost-sharing agreement between private individuals, not a commercial transportation service. The Raleigh engineers\' experience demonstrates a universal truth about shared transportation: the difference between a car pool that saves thousands of dollars and one that costs three friendships is a written, signed, mutually endorsed agreement that removes logistics from the realm of personal negotiation and places them in the realm of pre-agreed protocol.',
+      'When you trust someone with your home — whether for a weekend trip or an extended vacation — a simple written house sitting agreement protects both you and your house sitter. Without a written document, expectations around mail collection, plant watering, pet care, appliance usage, and liability for accidental damage are left to vague verbal agreements that inevitably miss critical details. A house sitting contract template documents the house sitter\'s responsibilities, access instructions, emergency contacts, pet care protocols, utility responsibilities, and liability limitations.',
+      'Essential clauses in a house sitting agreement include: dates and times of the sitting period, specific daily responsibilities (mail collection, plant watering, pet feeding and walking, trash disposal), emergency procedures and contact information, permission for the sitter to have guests, liability for damage caused by the sitter, reimbursement for supplies purchased, and the sitter\'s right to quiet enjoyment of common areas. A signed house sitting contract transforms the experience from an informal favor into a professional arrangement where both parties feel secure and respected.',
     ],
   },
   {
@@ -135,9 +119,48 @@ const ARTICLES: Article[] = [
       'Why You Actually Need a Written Contract: Look — verbal deals work until money gets tight. Then people get defensive, memories get fuzzy, and suddenly you\'re in a fight over $47. A shared expense contract isn\'t about being "legal." It\'s about not arguing over Venmo requests, protecting your credit, keeping the peace, and sticking to your budget. In 2026, shared living isn\'t a preference — it\'s a budget necessity. But you can do it without stress, drama, or resentment. Make your free shared expense plan in 60 seconds — you don\'t need a lawyer. You don\'t need to sign up. Just use our 100% free shared expense contract builder, made for real American renters dealing with 2026 rent prices. Customize it, print it, sign it, and be done with it. Stop letting rent inflation ruin your budget and your vibe. Get a fair expense-splitting deal today.',
     ],
   },
+  {
+    icon: <MessageCircle size={20} />,
+    tag: 'Roommate Life',
+    title: '5 Friction-Free Ways to Divide Chores with Roommates (Without Becoming the Bad Guy)',
+    paragraphs: [
+      'Let\'s be honest — you did not sign up for this. You signed a lease, split the security deposit, and maybe shared a pizza on moving day. You did NOT sign up for the 47 unanswered group texts about the towering pile of dirty dishes in the sink, the mysterious disappearance of your oat milk (again), or the passive-aggressive sticky note on the microwave that reads "Whoever left this mess — please clean up after yourself :)" with a smiley face that feels anything but friendly. If this hits close to home, you are not alone. The #1 cause of roommate conflict in shared apartments across America isn\'t loud music or stolen clothes — it\'s the slow, grinding friction of uneven household chores. The good news? You can fix it without becoming "the bad guy." You just need a system, a little bit of structure, and a free chore contract that does the heavy lifting for you.',
+      'Why Verbal Agreements Always Fail — and Why Everyone Ends Up Resentful: You and your roommate sat down on day one and agreed: "Yeah, we\'ll both just keep things clean, no big deal." Sounds reasonable, right? Except your definition of "clean" might mean bleach-scrubbed counters and vacuum lines on the carpet, while theirs means "I moved the cereal box from the table to the counter." That gap — the gap between deep cleaning and light wiping — is where 90% of roommate resentment is born. One person feels like the unpaid building super. The other genuinely believes they are pulling their weight. Without a written standard, both roommates are right in their own heads, and wrong in reality. A chore agreement template solves this by putting the standard in writing, not in feelings.',
+      'The Psychology of a Visual Contract — Why Writing It Down Changes Everything: Here is something psychologists and behavioral economists agree on: people follow written agreements more reliably than spoken ones. Not because they are more "legal" — but because writing something down makes it real. When you and your roommate both sign a free chore contract and stick it on the fridge with a magnet, something shifts. That piece of paper becomes a neutral third party. When the kitchen counters are sticky on your roommate\'s cleaning day, you are not nagging them — the contract is. Studies in behavioral science call this "commitment consistency bias": once someone signs their name to a document, they are psychologically more likely to follow through, even if nobody is watching. And for the roommate who tends to "forget" — a visual chart pinned to the wall serves as a gentle daily reminder that requires zero awkward conversations. Print it out. Hang it up. Watch the dynamic shift.',
+      'Practical Steps to Divide Chores Evenly — Rotation vs. Zone System: There are two main ways to divide household chores that have been tested by millions of roommates across America, and both work — as long as they are written down and signed. Option one is the Rotation System: every week, residents rotate through task categories. Week one: you clean the bathroom and your roommate handles the kitchen. Week two: you swap. Option two is the Zone Assignment System: each resident owns specific common areas permanently. You own the kitchen — full stop. Your roommate owns the bathroom and the living room. Which one is better for your household depends on your personalities. If one of you is a deep-cleaner and the other is a surface-wiper, zones might create more resentment because the deep-cleaner will always feel like they are doing harder work. In that case, a rotating schedule — where both people eventually do every task — tends to feel fairer over time. Here is the rule of thumb: if one common area (say the kitchen) is significantly more work, rotate it. For equal-effort spaces, zones work great. Either way, get it into your roommate chore list before week two of the lease. The first month is the honeymoon period; after that, habits calcify and change gets harder.',
+      'The CTA — Build Your Free Chore Contract in 60 Seconds: Here is the part where we stop talking and start doing. Head over to freechorecontract.com, pick your document type (Chore Contract, Fridge Treaty, Pet Addendum, or Shared Expense Plan), fill in your names and household rules, and hit print. No email required. No credit card. No signup. No "create an account to download." Just a clean, printable, legally structured chore agreement template that you and your roommate can sign tonight and stick on the fridge before the next dirty dish even hits the sink. Your apartment will be cleaner, your friendship will stay intact, and you will never have to send another passive-aggressive group text again.',
+    ],
+  },
 ];
 
+function transformArticlesForFamily(articles: Article[]): Article[] {
+  return articles.map(article => ({
+    ...article,
+    title: article.title.replace(/Residents/g, 'Family Members').replace(/residents/g, 'family members'),
+    paragraphs: article.paragraphs.map(p =>
+      p.replace(/Residents/g, 'Family Members').replace(/residents/g, 'family members')
+    ),
+  }));
+}
+
 export default function Articles() {
+  const pageVariant = usePageVariant();
+  const [openIndexes, setOpenIndexes] = useState<Set<number>>(new Set());
+
+  const articles = pageVariant === 'family' ? transformArticlesForFamily(ARTICLES) : ARTICLES;
+
+  const toggleAccordion = (index: number) => {
+    setOpenIndexes(prev => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  };
+
   return (
     <section className="no-print max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       {/* Section header */}
@@ -147,42 +170,72 @@ export default function Articles() {
           Knowledge Base
         </div>
         <h2 className="text-2xl md:text-3xl font-bold text-slate-100 mb-3">
-          Roommate &amp; Household Agreement Guide
+          {pageVariant === 'family' ? 'Family &amp; Household Agreement Guide' : 'Roommate &amp; Household Agreement Guide'}
         </h2>
         <p className="text-slate-400 text-sm max-w-xl mx-auto leading-relaxed">
-          Expert guidance on co-living contracts, kids chore education, couples household division, pet agreements, and conflict resolution strategies that actually work.
+          {pageVariant === 'family'
+            ? 'Expert guidance on family chore contracts, kids responsibility charts, couples household division, pet agreements, and conflict resolution strategies that actually work.'
+            : 'Expert guidance on co-living contracts, kids chore education, couples household division, pet agreements, and conflict resolution strategies that actually work.'}
         </p>
       </div>
 
-      {/* Articles grid */}
-      <div className="grid md:grid-cols-1 gap-8">
-        {ARTICLES.map((article, i) => (
-          <article
-            key={i}
-            className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-6 md:p-8 hover:border-slate-600/60 transition-colors duration-200"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-sky-500/15 border border-sky-500/20 flex items-center justify-center text-sky-400">
-                {article.icon}
+      {/* Accordion */}
+      <div className="space-y-4">
+        {articles.map((article, i) => {
+          const isOpen = openIndexes.has(i);
+          return (
+            <div
+              key={i}
+              className={`rounded-2xl border border-slate-700/50 overflow-hidden transition-colors duration-200 ${
+                i % 2 === 0
+                  ? 'bg-slate-950/80 border-slate-700/30'
+                  : 'bg-slate-800/40 border-slate-700/50'
+              }`}
+            >
+              {/* Clickable header */}
+              <button
+                onClick={() => toggleAccordion(i)}
+                className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left group cursor-pointer"
+                aria-expanded={isOpen}
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-sky-500/15 border border-sky-500/20 flex items-center justify-center text-sky-400">
+                    {article.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-xs font-semibold tracking-widest text-sky-400/80 uppercase block">
+                      {article.tag}
+                    </span>
+                    <h3 className="text-base md:text-lg font-bold text-slate-100 leading-snug mt-1 group-hover:text-sky-300 transition-colors">
+                      {article.title}
+                    </h3>
+                  </div>
+                </div>
+                <ChevronDown
+                  size={20}
+                  className={`flex-shrink-0 text-slate-500 transition-all duration-300 ${
+                    isOpen ? 'rotate-180 text-sky-400' : ''
+                  }`}
+                />
+              </button>
+
+              {/* Collapsible content */}
+              <div
+                className={`transition-all duration-300 ease-in-out ${
+                  isOpen ? 'max-h-[3000px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+                }`}
+              >
+                <div className="px-5 md:px-6 pb-5 md:pb-6 space-y-4 border-t border-slate-700/30 pt-4">
+                  {article.paragraphs.map((p, j) => (
+                    <p key={j} className="text-sm text-slate-400 leading-relaxed">
+                      {p}
+                    </p>
+                  ))}
+                </div>
               </div>
-              <span className="text-xs font-semibold tracking-widest text-sky-400/80 uppercase">
-                {article.tag}
-              </span>
             </div>
-
-            <h3 className="text-lg md:text-xl font-bold text-slate-100 mb-5 leading-snug">
-              {article.title}
-            </h3>
-
-            <div className="flex flex-col gap-4">
-              {article.paragraphs.map((para, j) => (
-                <p key={j} className="text-sm text-slate-400 leading-relaxed">
-                  {para}
-                </p>
-              ))}
-            </div>
-          </article>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

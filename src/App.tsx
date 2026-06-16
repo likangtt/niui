@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Download, Ligature as FileSignature, Sparkles } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Download, Ligature as FileSignature, Sparkles, ShieldCheck } from 'lucide-react';
 import ConfigPanel from './components/ConfigPanel';
 import DocumentPreview from './components/DocumentPreview';
 import Articles from './components/Articles';
@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import LegalPage from './components/LegalPage';
 import CookieConsent from './components/CookieConsent';
 import ShareSection from './components/ShareSection';
+import { usePageVariant } from './pageVariant';
 import type { BasicInfo, Clause, Signatures, DocumentType } from './types';
 import type { LegalPageType } from './components/LegalPage';
 
@@ -138,11 +139,30 @@ const DEFAULT_SIGNATURES: Signatures = {
 };
 
 export default function App() {
-  const [docType, setDocType] = useState<DocumentType>('roommate');
+  const pageVariant = usePageVariant();
+  const defaultDocType: DocumentType = pageVariant === 'family' ? 'chore' : 'roommate';
+  const [docType, setDocType] = useState<DocumentType>(defaultDocType);
   const [basicInfo, setBasicInfo] = useState<BasicInfo>(DEFAULT_BASIC_INFO);
-  const [clauses, setClauses] = useState<Clause[]>(CLAUSE_TEMPLATES['roommate']);
+  const [clauses, setClauses] = useState<Clause[]>(CLAUSE_TEMPLATES[defaultDocType]);
   const [signatures, setSignatures] = useState<Signatures>(DEFAULT_SIGNATURES);
   const [legalPage, setLegalPage] = useState<LegalPageType | null>(null);
+  const [showFloatingCta, setShowFloatingCta] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show floating CTA when scrolled past the tool section (~750px from top)
+      setShowFloatingCta(window.scrollY > 750);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  function scrollToTool() {
+    const toolSection = document.querySelector('main');
+    if (toolSection) {
+      toolSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 
   function handleDocTypeChange(newType: DocumentType) {
     setDocType(newType);
@@ -211,7 +231,11 @@ export default function App() {
           </div>
 
           {/* Nav links — credibility signals */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-emerald-400/70">
+              <ShieldCheck size={12} className="text-emerald-500" />
+              100% Free &amp; Private
+            </span>
             <button
               onClick={() => setLegalPage('about')}
               className="px-3 py-1.5 text-xs text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 rounded-md transition-colors"
@@ -224,15 +248,11 @@ export default function App() {
             >
               Contact
             </button>
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-400 bg-slate-800/60 px-3 py-1.5 rounded-full border border-slate-700/50">
-              <Sparkles size={11} className="text-sky-400" />
-              100% Free &amp; Private
-            </span>
             <button
               onClick={handlePrint}
-              className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-400 text-white rounded-lg text-sm font-semibold transition-colors shadow-lg shadow-sky-500/20"
+              className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white rounded-lg text-sm font-bold transition-colors shadow-lg shadow-emerald-600/30"
             >
-              <Download size={15} />
+              <Download size={16} />
               <span className="hidden sm:inline">Download PDF</span>
               <span className="sm:hidden">PDF</span>
             </button>
@@ -244,17 +264,35 @@ export default function App() {
       <section className="no-print relative overflow-hidden bg-gradient-to-b from-slate-900 to-slate-950 border-b border-slate-800/60">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(14,165,233,0.08),transparent)]" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-sky-400/80 uppercase mb-4 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20">
-            <Sparkles size={12} />
-            Free Roommate Agreement Generator
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-100 tracking-tight leading-tight mb-4">
-            Official Chore Contracts,<br />
-            <span className="text-sky-400">Generated in Seconds</span>
-          </h1>
-          <p className="text-slate-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-            Build a print-ready Roommate Agreement, Chore Contract, Fridge Treaty, Pet Addendum, Neighbor Boundary Agreement, Lending Contract, House Sitting Agreement, Shared Expense Plan, or Car Pool Agreement — fully customizable, legally structured, and 100% private.
-          </p>
+          {pageVariant === 'family' ? (
+            <>
+              <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-sky-400/80 uppercase mb-4 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20">
+                <Sparkles size={12} />
+                Free Family Chore Contract Generator
+              </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-100 tracking-tight leading-tight mb-4">
+                Family Chore Contracts,<br />
+                <span className="text-sky-400">Built for Parents &amp; Kids</span>
+              </h1>
+              <p className="text-slate-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+                Create a printable Chore Contract, Fridge Treaty, Pet Addendum, or Shared Expense Plan for your household — fully customizable, designed for families, and 100% free.
+              </p>
+            </>
+          ) : (
+            <>
+              <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-sky-400/80 uppercase mb-4 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20">
+                <Sparkles size={12} />
+                Free Roommate Agreement Generator
+              </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-100 tracking-tight leading-tight mb-4">
+                Official Chore Contracts,<br />
+                <span className="text-sky-400">Generated in Seconds</span>
+              </h1>
+              <p className="text-slate-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+                Build a print-ready Roommate Agreement, Chore Contract, Fridge Treaty, Pet Addendum, Neighbor Boundary Agreement, Lending Contract, House Sitting Agreement, Shared Expense Plan, or Car Pool Agreement — fully customizable, legally structured, and 100% private.
+              </p>
+            </>
+          )}
         </div>
       </section>
 
@@ -294,13 +332,6 @@ export default function App() {
                 </svg>
                 Live Document Preview
               </span>
-              <button
-                onClick={handlePrint}
-                className="ml-auto flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700/60 hover:border-slate-500 text-slate-300 hover:text-white rounded-lg text-xs font-semibold transition-all duration-150 shadow"
-              >
-                <Download size={13} />
-                Download Formal PDF
-              </button>
             </div>
             <DocumentPreview
               docType={docType}
@@ -317,13 +348,15 @@ export default function App() {
         </div>
       </main>
 
-      {/* Floating PDF button (mobile & always visible) */}
+      {/* Floating CTA — scroll-to-tool button (appears on all screens when scrolled down) */}
       <button
-        onClick={handlePrint}
-        className="no-print fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-5 py-3.5 bg-sky-500 hover:bg-sky-400 text-white rounded-2xl font-semibold text-sm shadow-xl shadow-sky-500/30 transition-all duration-200 hover:scale-105 active:scale-95 lg:hidden"
+        onClick={() => { scrollToTool(); setTimeout(() => handlePrint(), 600); }}
+        className={`no-print fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white rounded-full font-bold shadow-xl shadow-emerald-600/30 transition-all duration-300 hover:scale-110 active:scale-95 ${
+          showFloatingCta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
+        aria-label="Scroll to tool and download PDF"
       >
-        <Download size={16} />
-        Download Formal PDF
+        <Download size={22} />
       </button>
 
       {/* SEO Articles */}

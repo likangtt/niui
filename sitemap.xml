@@ -9,8 +9,13 @@
 
 <url>
   <loc>https://www.freechorecontract.com/</loc>
-  <lastmod>2026-05-18T23:14:40+00:00</lastmod>
+  <lastmod>2026-06-16</lastmod>
+  <priority>1.00</priority>
 </url>
 
-
+<url>
+  <loc>https://www.freechorecontract.com/roommate-chore-contract.html</loc>
+  <lastmod>2026-06-16</lastmod>
+  <priority>0.80</priority>
+</url>
 </urlset>

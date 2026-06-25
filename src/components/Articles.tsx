@@ -186,10 +186,10 @@ export default function Articles() {
           return (
             <div
               key={i}
-              className={`rounded-2xl border border-slate-700/50 overflow-hidden transition-colors duration-200 ${
+              className={`rounded-2xl border border-slate-800/50 overflow-hidden transition-colors duration-200 ${
                 i % 2 === 0
-                  ? 'bg-slate-950/80 border-slate-700/30'
-                  : 'bg-slate-800/40 border-slate-700/50'
+                  ? 'bg-black border-slate-800/30'
+                  : 'bg-slate-900 border-slate-800/50'
               }`}
             >
               {/* Clickable header */}

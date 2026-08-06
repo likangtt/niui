@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BookOpen, ChevronDown, Scale, Users, Home, Baby, Heart, PawPrint, MessageCircle, GraduationCap, Fence, Handshake, Key, Receipt, Car } from 'lucide-react';
+import { BookOpen, ChevronDown, Scale, Users, Home, Baby, Heart, PawPrint, MessageCircle, GraduationCap, Fence, Handshake, Key, Receipt, Car, Building } from 'lucide-react';
 import { usePageVariant } from '../pageVariant';
 
 interface Article {
@@ -131,6 +131,18 @@ const ARTICLES: Article[] = [
       'The CTA — Build Your Free Chore Contract in 60 Seconds: Here is the part where we stop talking and start doing. Head over to freechorecontract.com, pick your document type (Chore Contract, Fridge Treaty, Pet Addendum, or Shared Expense Plan), fill in your names and household rules, and hit print. No email required. No credit card. No signup. No "create an account to download." Just a clean, printable, legally structured chore agreement template that you and your roommate can sign tonight and stick on the fridge before the next dirty dish even hits the sink. Your apartment will be cleaner, your friendship will stay intact, and you will never have to send another passive-aggressive group text again.',
     ],
   },
+  {
+    icon: <Building size={20} />,
+    tag: 'Landlord & Tenant',
+    title: 'The Live-In Landlord vs. Tenant Power Dynamic: How to Navigate Chore Contracts in "House Hacking" Homes',
+    paragraphs: [
+      'In the current US housing market, a massive shift has taken place. With mortgage rates hovering at stubborn highs and home prices remaining elevated, a new generation of homeowners has turned to "house hacking" to survive. A significant percentage of Millennial and Gen Z buyers in metropolitan areas like Austin, Denver, and Atlanta are now live-in landlords — purchasing a home and immediately renting out the spare bedrooms to roommates to cover their monthly mortgage payments. While this setup is a financial win-win, it introduces a highly volatile social dynamic. When your roommate is also the person who signs your lease and owns the equity in the property, a simple dispute over unwashed dishes or a dirty bathroom can quickly escalate into a legal or emotional crisis. To prevent domestic warfare, a specialized Live-In Landlord Chore Contract is required.',
+      'Case Study 1: The Micromanaging Homeowner — Jessica (31) bought a three-bedroom townhouse in Charlotte, NC. To help pay her $2,800 monthly mortgage, she rented a room to Mark (26) for $950 a month. They verbally agreed to "split chores evenly." Within two months, resentment boiled over. Because Jessica owned the house, she had an incredibly high emotional and financial attachment to keeping it pristine. She expected the quartz countertops to be wiped down with a specific granite cleaner immediately after every meal. Mark, who viewed himself as a paying tenant, felt he was being treated like a child. He preferred to do his dishes once a day in the evening. The Resolution via Contract: Jessica and Mark sat down and drafted a formal chore contract that removed emotion from the equation. Instead of vague standards, they defined the "Baseline Clean" — a mutually agreed level of cleanliness that satisfied both the owner\'s high standards and the tenant\'s comfort level. They also agreed that if Jessica mandated premium cleaning products, she would absorb 100% of the cost for those specific supplies, rather than splitting them 50/50.',
+      'Case Study 2: The "Property Maintenance" Trap — David owned a single-family home with a large yard in Seattle, WA, and rented the basement apartment to Chloe. Their informal agreement stated they would share "household upkeep." When summer arrived, the lawn grew out of control. David asked Chloe to spend her Saturday morning mowing the lawn and weeding the garden. Chloe flatly refused, arguing that landscaping and lawn care constitute property maintenance that enhances the long-term equity of David\'s asset, not a daily "household chore." The Resolution via Contract: Had they used a structured contract from day one, this would have been avoided. In a professional live-in landlord setup, Chores (daily cleanliness) must be strictly separated from Maintenance (property value upkeep). Standard chore contracts for this dynamic state that heavy outdoor work (lawn mowing, gutter cleaning, HVAC filter replacement) is the landlord\'s responsibility. If the landlord wants the tenant to do it, it must be treated as a financial transaction — for instance, offering a $75 rent credit per month in exchange for lawn maintenance.',
+      'Crucial Clauses for a Live-In Landlord Chore Contract — If you are renting a room from a homeowner, or if you are a homeowner taking in tenants, your chore agreement cannot look like a standard college dorm contract. It must include these specific protections: (1) The Equity vs. Rent Distinction — the contract must explicitly state that chores are performed to maintain a sanitary and comfortable living environment, not to improve the property\'s structural value. Example clause: "Tenant is responsible for sweeping and mopping the kitchen floor weekly. Tenant is not responsible for resealing tiles, fixing plumbing leaks, or repairing appliances, which fall under Landlord Maintenance." (2) Supply Cost Allocation — who pays for vacuum bags, dishwasher detergent, and trash bags? Rule of thumb: if the landlord mandates specific premium cleaning products to protect their high-end finishes, the landlord should absorb the cost. If standard products are used, costs should be split equitably. (3) Right to Hire Professional Help — what happens if a party consistently fails to do their chores? A landlord cannot easily "evict" a roommate over a dusty living room without serious legal headaches. Include a Professional Cleaning Clause: "If either party fails to complete their assigned weekly chore within a 48-hour grace period, the other party has the right to hire a professional cleaning service for that specific area, with the cost billed directly to the non-compliant party (or deducted from the security deposit, where legally permissible)."',
+      'FAQ — Can a landlord evict a tenant for not doing chores? In most US states, standard landlord-tenant laws protect tenants from immediate eviction over minor lifestyle disputes like chores. However, if the chore violation creates a health hazard (e.g., attracting rodents or causing mold), it can be categorized as a lease violation. Having a signed chore contract attached as an addendum to the lease gives the landlord much stronger legal footing. How do we handle cleaning when guests stay over? The contract should state that if either party hosts guests for more than 48 hours, that party assumes 100% responsibility for cleaning up after their guests immediately, including extra bathroom cleaning and trash disposal. House hacking is one of the smartest financial moves you can make in today\'s economy, but it only works if domestic boundaries are crystal clear. Don\'t let a dirty kitchen counter jeopardize your mortgage income or your tenant\'s right to quiet enjoyment. Use our interactive Live-In Landlord Chore Contract Generator to create a legally compliant, socially balanced agreement that keeps the peace and protects your property. Customizing your agreement takes less than five minutes, but it saves months of awkward kitchen confrontations.',
+    ],
+  },
 ];
 
 function transformArticlesForFamily(articles: Article[]): Article[] {
@@ -237,6 +249,96 @@ export default function Articles() {
           );
         })}
       </div>
+
+      {/* Standalone article: Domestic Arrangements Framework */}
+      <article className="mt-12 rounded-2xl border border-slate-800/50 bg-gradient-to-br from-slate-900 to-black overflow-hidden">
+        <div className="p-6 md:p-8 lg:p-10">
+          {/* Tag */}
+          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-sky-400 uppercase mb-4">
+            <BookOpen size={14} />
+            Household Framework
+          </div>
+
+          {/* Title */}
+          <h2 className="text-xl md:text-2xl font-bold text-slate-100 mb-6 leading-snug">
+            Beyond Chores: Designing a Formal Domestic Arrangements Framework for Your Household
+          </h2>
+
+          {/* Content */}
+          <div className="space-y-5 text-sm text-slate-400 leading-relaxed">
+            <p>
+              When we hear the word "chores," we often picture a messy room, a grumpy teenager, and a frustrated parent yelling from the hallway. It feels trivial, emotional, and exhausting. However, managing a modern household is not just about vacuuming carpets or washing dishes—it is about managing an ecosystem. In professional and legal circles, this isn't called a "chore list." It is referred to under a much more accurate and empowering term: <strong className="text-slate-300">domestic arrangements</strong>.
+            </p>
+            <p>
+              Whether you are running a busy family household with kids, co-parenting, or managing a shared living space with roommates, establishing a formal framework for your household duties is the single most effective way to eliminate friction. If you came here searching for a legitimate <strong className="text-slate-300">domestic arrangements pdf free download</strong>, this comprehensive guide will explain the psychology behind structured household agreements and show you how to leverage a professional <strong className="text-slate-300">chore contract template</strong> to bring order to your home.
+            </p>
+
+            <hr className="border-slate-800/50 my-6" />
+
+            <h3 className="text-lg font-bold text-slate-200 mb-3">What Exactly Are "Domestic Arrangements"?</h3>
+            <p>
+              In social and psychological studies, <strong className="text-slate-300">domestic arrangements</strong> refer to the explicit or implicit agreements made between people living together regarding financial contributions, household labor, and shared responsibilities. Most families rely on <em className="text-slate-300">implicit</em> arrangements—assumptions that "someone will eventually clean the bathroom" or "someone will remember to take out the trash." Unfortunately, implicit arrangements are a breeding ground for resentment. One person inevitably ends up carrying the "mental load" of the household, leading to burnout and passive-aggressive arguments. By upgrading your household to an <em className="text-slate-300">explicit</em> framework, you replace assumptions with absolute clarity. You treat your household like a successful organization where every team member knows their exact role.
+            </p>
+
+            <hr className="border-slate-800/50 my-6" />
+
+            <h3 className="text-lg font-bold text-slate-200 mb-3">Why You Need a Formal Chore Contract Template</h3>
+            <p>
+              Many people wonder: "Is it really necessary to have a written document just to get the kitchen cleaned?" The answer is a resounding yes. A written <strong className="text-slate-300">chore contract template</strong> serves as a neutral, third-party authority in your house. Here is the real-world value it brings to your daily life:
+            </p>
+            <ol className="list-decimal list-inside space-y-2 ml-2">
+              <li><strong className="text-slate-300">Defines "Done":</strong> Arguments rarely happen because someone refused to work; they happen because people have different standards of cleanliness. A formal template allows you to define exactly what a completed task looks like (e.g., "Kitchen cleaned means dishes in the dishwasher, counters wiped, and trash taken out").</li>
+              <li><strong className="text-slate-300">Removes the Emotion:</strong> When a task is neglected, you don't need to nag, scold, or lecture. You simply point to the signed paper on the refrigerator. The document carries the authority, not your voice.</li>
+              <li><strong className="text-slate-300">Creates True Equity:</strong> It visualizes the total workload of the house, ensuring that no single person is unfairly burdened with all the heavy lifting.</li>
+            </ol>
+
+            <hr className="border-slate-800/50 my-6" />
+
+            <h3 className="text-lg font-bold text-slate-200 mb-3">Designing a Modern Domestic Arrangements PDF Workflow</h3>
+            <p>
+              When you are ready to <strong className="text-slate-300">download a free chore contract</strong> or structure your family agreements, a successful document should always cover the following three core pillars of domestic governance:
+            </p>
+
+            <h4 className="text-base font-semibold text-slate-300 mt-4 mb-2">1. Task Delegation (The Checklist)</h4>
+            <p>
+              This is the heart of the agreement. Tasks should be assigned based on age, ability, and personal preference. Mixing fixed daily tasks (like making beds) with rotating weekly tasks (like mowing the lawn) keeps the routine from feeling monotonous.
+            </p>
+
+            <h4 className="text-base font-semibold text-slate-300 mt-4 mb-2">2. Accountability and Deadlines</h4>
+            <p>
+              A task without a deadline will always be delayed. Your agreement should specify <em className="text-slate-300">when</em> a task must be completed (e.g., "Dishes must be cleared before screen time unlocks" or "Trash must be at the curb by Sunday evening").
+            </p>
+
+            <h4 className="text-base font-semibold text-slate-300 mt-4 mb-2">3. The Reward System (The Household Economy)</h4>
+            <p>
+              For younger children, tying your <strong className="text-slate-300">family chore checklist</strong> to tangible rewards is essential for building long-term motivation. The most effective rewards in modern North American households include:
+            </p>
+            <ul className="list-disc list-inside space-y-1.5 ml-2">
+              <li><strong className="text-slate-300">Allowance:</strong> Teaching financial literacy by treating chores like a real-world job.</li>
+              <li><strong className="text-slate-300">Screen Time:</strong> Using WiFi access and tablet privileges as incentives (e.g., chores must be completed before video games are allowed).</li>
+              <li><strong className="text-slate-300">Family Perks:</strong> Unlocking a special weekend movie night or a fun outing as a reward for a 100% completed week.</li>
+            </ul>
+
+            <hr className="border-slate-800/50 my-6" />
+
+            <h3 className="text-lg font-bold text-slate-200 mb-3">Access Your Free Domestic Arrangements PDF Free Download Instantly</h3>
+            <p>
+              You don't need to hire a lawyer or spend hours trying to design a complicated document from scratch. We believe that a well-organized, peaceful home should be free and accessible to every family.
+            </p>
+            <p>
+              Our advanced, web-based tool allows you to generate a fully customized, professional-grade <strong className="text-slate-300">chore contract template</strong> tailored specifically to your family's size, age groups, and specific rules in less than 60 seconds.
+            </p>
+            <ul className="list-disc list-inside space-y-1.5 ml-2">
+              <li><strong className="text-slate-300">No Sign-Up Required:</strong> Your privacy is our top priority. We do not collect, store, or sell any personal data. You will never be forced to leave your email address just to get your file.</li>
+              <li><strong className="text-slate-300">Instant Direct Download:</strong> Customize your clauses, click one button, and generate your print-ready PDF instantly.</li>
+              <li><strong className="text-slate-300">Perfect for the Fridge:</strong> Print it out, hold a quick family meeting, have everyone sign their name, and stick it on the refrigerator to establish a visual anchor for your new household routine.</li>
+            </ul>
+            <p className="mt-4 text-slate-300 font-medium">
+              Take the first step toward a more cooperative, stress-free household tonight. Stop nagging, start documenting, and watch your family transform into a true team.
+            </p>
+          </div>
+        </div>
+      </article>
     </section>
   );
 }
